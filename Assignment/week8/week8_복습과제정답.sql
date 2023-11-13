@@ -1,0 +1,14 @@
+DROP PROCEDURE IF EXISTS loopWhile;
+
+DELIMITER $$
+CREATE PROCEDURE loopWhile()
+BEGIN
+    DECLARE i INT DEFAULT 1;
+    DECLARE VAL VARCHAR(60) DEFAULT ' * * * * * ';
+    WHILE i <= 5 DO
+        SELECT LEFT(VAL, i * 2);
+        SET i = i + 1;
+    END WHILE;
+END $$
+DELIMITER ;
+CALL loopWhile();
