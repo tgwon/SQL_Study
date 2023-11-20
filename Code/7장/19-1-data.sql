@@ -16,3 +16,37 @@ VALUES
   , (7, 'supplement'   , '2016-01-01 10:00:00')
   , (6, 'cooking'      , '2016-02-01 10:00:00')
 ;
+
+SELECT * FROM mst_categories;
+
+select
+	count(1) as total_num
+	,count(distinct id) as key_num
+from
+	mst_categories;
+	
+select
+	id
+	,count(*) as record_num
+	,string_agg(name, ',') as name_list
+	,string_agg(stamp, ',')  as stamp_list
+from
+	mst_categories
+group by id
+having count(*) >1;
+
+
+with
+mst_categories_with_key_num as(
+select
+	*
+	, count(1) over(partition by id) as key_num
+from
+	mst_categories
+)
+select
+	*
+from
+	mst_categories_with_key_num
+where
+	key_num > 1

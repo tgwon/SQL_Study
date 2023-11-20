@@ -21,3 +21,52 @@ VALUES
   , ('2016-11-04 22:00:00', '3efe001c', 'U008', 'click', 'A001')
   , ('2016-11-04 22:00:10', '3efe001c', 'U008', 'click', 'A001')
 ;
+
+select * from dup_action_log;
+select
+	user_id
+	,products
+	,string_agg(session,',') as session_list
+	,string_agg(stamp, ',') as stamp_list
+from
+	dup_action_log
+group by
+	user_id, products
+having
+	count(*) > 1;
+	
+	
+select
+	session
+	,user_id
+	,action
+	,products
+	,min(stamp) as stamp
+from
+	dup_action_log
+group by
+	session, user_id, action, products;
+	
+WITH
+dup_action_log_with_order_num as(
+select
+	*
+	, row_number()
+		over(
+		partition by session, user_id, action, products
+		order by stamp
+		) as order_num
+from
+	dup_action_log
+)
+select
+	session
+	,user_id
+	,action
+	,products
+	,stamp
+from
+	dup_action_log_with_order_num
+where
+	order_num = 1;
+	
