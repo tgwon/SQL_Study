@@ -4,7 +4,6 @@
 * **Project** : SQL 토이 프로젝트(E-commerce DataBase 구축 및 분석)
   
 ## E-commerce Data DataBase 구축 및 분석
-Development of risk indicators through building safety data mining and analysis
 
 
 ## ✍ 프로젝트 요약
