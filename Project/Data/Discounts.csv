@@ -1,6 +1,0 @@
-,discount_rate,discount_details,customer_grade
-0,0.0,기본 등급,BRONZE
-1,0.1,누적 금액 100$ 이상,SILVER
-2,0.2,누적 금액 250$ 이상,GOLD
-3,0.3,누적 금액 400$ 이상,PLATINUM
-4,0.4,누적 금액 500$ 이상,VIP
